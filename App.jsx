@@ -13,7 +13,7 @@ function App() {
      <div style={{backgroundColor : "blue", margin:"0", padding:"0", overflowX:"hidden", height:"100vh", width:"100vw"}}>
       <Navbar> <NavbarBrand style={{ color:"white"}}> Book Recommendation System </NavbarBrand> 
       <ul>
-        <li> <Navbar> <Nav  style={{ color:"white"}}> HI </Nav></Navbar></li>
+        <li> <Navbar> <Nav  style={{ color:"white"}}> Recommend </Nav></Navbar></li>
        
         {/* <li><Nav> Recommend </Nav></li>
         <li><Nav> Contact </Nav></li> */} */
