@@ -33,6 +33,13 @@
   margin-bottom: 20px; /* Add space between cards and the container edge */
 }
 
+.recommend-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
 @media (max-width: 1200px) {
   .img-container {
     grid-template-columns: repeat(4, 1fr);

@@ -1,57 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import { Container, Card, CardImg, Nav, Navbar, NavbarBrand, NavLink } from 'react-bootstrap';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { Nav, Navbar, NavbarBrand } from 'react-bootstrap';
+import Home from './Home';
+import Recommend from './RecommendBooks';
 
 function App() {
-  const [popularBooks, setPopularBooks] = useState([]);
-
-  useEffect(() => {
-    fetchPopularBooks();
-  }, []);
-
-  const fetchPopularBooks = async () => {
-    try {
-      const response = await fetch('http://localhost:5000/api/popular_books');
-      const data = await response.json();
-      setPopularBooks(data);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-// darker shade teal color
   return (
-    <div style={{ backgroundColor: 'teal', margin: '0', padding: '0', overflowX: 'hidden', height: '100vh', width: '100vw' }}>
-      <Navbar className="navbar">
-        <NavbarBrand style={{ color: 'white' }}>Book Recommendation System</NavbarBrand>
-        <Nav>
-          <NavLink style={{ color: 'white' }}>Home</NavLink>
-          <NavLink style={{ color: 'white' }}>About</NavLink>
-          <NavLink style={{ color: 'white' }}>Contact</NavLink>
-        </Nav>
-      </Navbar>
-      <br />
-      <Container style={{ marginRight: 'auto', marginLeft: 'auto', color: 'White' }}>
-        <h1 style={{ textAlign: 'center' }}>Popular Books</h1>
-      </Container>
+    <Router>
+      <div style={{ backgroundColor: 'teal', margin: '0', padding: '0', overflowX: 'hidden', height: '100vh', width: '100vw' }}>
+        <Navbar>
+          <NavbarBrand style={{ color: 'white' }}>Book Recommendation System</NavbarBrand>
+          <Nav>
+            <Nav.Link as={Link} to="/" style={{ color: 'white' }}>Home</Nav.Link>
+            <Nav.Link as={Link} to="/recommend" style={{ color: 'white' }}>Recommend</Nav.Link>
+            <Nav.Link as={Link} to="/contact" style={{ color: 'white' }}>Contact</Nav.Link>
+          </Nav>
+        </Navbar>
 
-     <div style={{marginBottom:'50%'}}>
-      <Container className='img-container'>
+        <br />
 
-        {popularBooks.map((book, index) => (
-          <Card key={index} className='img-item' style={{backgroundColor:'lightblue'}}>
-            <CardImg src={book["Image-URL-M"]} style={{ width: '100px', height: '150px', objectFit: 'cover' }} />
-            <Card.Body style={{ textAlign: 'center' }}>
-              <p>{book["Book-Title"]}</p>
-              <p className="mb-2 text-muted">{book["Book-Author"]}</p>
-              <p>
-                {book["num_ratings"]}
-              </p>
-            </Card.Body>
-          </Card>
-        ))}
-      </Container>
-    </div>
-  </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/recommend" element={<Recommend />} />
+          {/* Add additional routes as needed */}
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
